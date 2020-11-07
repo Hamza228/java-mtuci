@@ -146,6 +146,8 @@ class Module2 {
   }
 
   public static boolean isStrangePair(String str1, String str2) {
+    if (str1.equals("") && str2.equals("")) return true;
+
     return str1.charAt(0) == str2.charAt(str2.length() - 1) && str1.charAt(str1.length() - 1) == str2.charAt(0);
   }
 
@@ -217,7 +219,7 @@ class Tasks {
     log(Module2.getDecimalPlaces("3.5477"));
     log(Module2.Fibonacci(7));
     log(Module2.isValid("32454"));
-    log(Module2.isStrangePair("ratio", "orator"));
+    log(Module2.isStrangePair("", ""));
     log(Module2.isPrefix("automation", "auto-"));
     log(Module2.isSuffix("arachnophobia", "-phobia"));
     log(Module2.boxSeq(4));

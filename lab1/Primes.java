@@ -1,3 +1,5 @@
+package lab1;
+
 // finds all primes in range from 0 to 100
 class Primes {
     public static void main(String[] args) {

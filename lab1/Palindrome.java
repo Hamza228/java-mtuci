@@ -1,3 +1,5 @@
+package lab1;
+
 // finds palindromes
 class Palindrome {
   public static void main(String[] args) {

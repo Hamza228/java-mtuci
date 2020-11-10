@@ -1,51 +1,31 @@
 package lab2;
 
-public class Point3d {
-  private double xAxis;
-  private double yAxis;
+public class Point3d extends Point2d {
   private double zAxis;
 
   public Point3d(double x, double y, double z) {
-    xAxis = x;
-    yAxis = y;
+    super(x, y);
     zAxis = z;
   }
 
   public Point3d() {
-    xAxis = 0;
-    yAxis = 0;
+    super();
     zAxis = 0;
   }
 
-  public double getXAxis() {
-    return xAxis;
-  }
-
-  public void setXAxis(double x) {
-    xAxis = x;
-  }
-
-  public double getYAxis() {
-    return yAxis;
-  }
-
-  public void setYAxis(double y) {
-    yAxis = y;
-  }
-
-  public double getZAxis() {
+  public double getzAxis() {
     return zAxis;
   }
 
-  public void setZAxis(double z) {
+  public void setzAxis(double z) {
     zAxis = z;
   }
 
   public boolean equals(Point3d point) {
-    return xAxis == point.xAxis && yAxis == point.yAxis && zAxis == point.zAxis;
+    return getxAxis() == point.getxAxis() && getyAxis() == point.getyAxis() && zAxis == point.zAxis;
   }
 
   public double distanceTo(Point3d point) {
-    return Math.round(Math.sqrt(Math.pow(point.xAxis - xAxis, 2) + Math.pow(point.yAxis - yAxis, 2) + Math.pow(point.zAxis - zAxis, 2)) * 100.0) / 100.0;
+    return Math.round(Math.sqrt(Math.pow(point.getxAxis() - getxAxis(), 2) + Math.pow(point.getyAxis() - getyAxis(), 2) + Math.pow(point.zAxis - zAxis, 2)) * 100.0) / 100.0;
   }
 }

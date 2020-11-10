@@ -16,7 +16,7 @@ public class Lab2 {
 
   public static void main(String[] args) {
     Point3d a = new Point3d();
-    Point3d b = new Point3d(3, 4, 8);
+    Point3d b = new Point3d(3, 4, 5);
     Point3d c = new Point3d(5, 6, 0);
 
     try {

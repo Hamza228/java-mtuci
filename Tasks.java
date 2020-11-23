@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 class Module1 {
   public static double remainder(double a, double b) {
@@ -339,6 +339,172 @@ class Module3 {
   }
 }
 
+class Module4 {
+  public static String bessy(int n, int k, String str) {
+    String[] text = str.split(" ");
+    String txt="";
+    String finaltxt="";
+    for (int i = 0; i < n; i++) {
+      if (txt.length() + text[i].length() > k) {
+        finaltxt = finaltxt.trim() + "\r\n" + text[i] + " ";
+        txt = text[i];
+      } else {
+        finaltxt += text[i] + " ";
+        txt += text[i];
+      }
+    }
+    return finaltxt.trim();
+  }
+
+  public static String[] split(String str) {
+    List<String> list = new ArrayList<String>();
+    int f = 0;
+    int i = 0;
+    while (str.length() > 0) {
+      if (str.charAt(i) == '(') f++;
+      else f--;
+      if (f == 0) {
+        list.add(str.substring(0, i + 1));
+        str = str.substring(i + 1);
+        i = 0;
+        continue;
+      }
+      i++;
+    }
+    return list.toArray(new String[list.size()]);
+  }
+
+  public static String toCamelCase(String str) {
+    for (int i = 1; i < str.length(); i++) {
+      if (str.charAt(i) == '_')
+        str = str.substring(0, i) + str.substring(i + 1, i + 2).toUpperCase() + str.substring(i + 2, str.length());
+    }
+    return str;
+  }
+
+  public static String toSnakeCase(String str) {
+    return str.replaceAll("([A-Z])", "_$0").toLowerCase();
+  }
+
+  public static String overTime(double[] work) {
+    double sum = 0;
+    if (17 - work[0] >= 0)
+      sum += (17 - work[0]) * work[2];
+    if (work[1] - 17 >= 0)
+      sum += (work[1] - 17) * work[2] * work[3];
+    return ('$' + String.valueOf(sum));
+  }
+
+  public static String BMI(String weight, String height) {
+    double ves = Double.parseDouble(weight.split(" ")[0]);
+    double rost = Double.parseDouble(height.split(" ")[0]);
+    String out = " ";
+    if (weight.contains("pounds"))
+      ves = ves * 0.45;
+    if (height.contains("inches"))
+      rost *= 0.0254;
+    double BMI = Math.round((ves / (rost * rost)) * 10.0) / 10.0;
+    if (BMI < 18.5)
+      out = BMI + " Underweight";
+    if (BMI >= 18.5 && BMI <= 24.9)
+      out = BMI + " Normal weight";
+    if (BMI > 25)
+      out = BMI + " Overweight";
+    return out;
+  }
+
+  public static int bugger(int num) {
+    int count = 0;
+    while (num > 9) {
+      int chnum = 1;
+      while (num > 0) {
+        chnum *= num % 10;
+        num /= 10;
+      }
+      num = chnum;
+      count++;
+    }
+    return count;
+  }
+
+  public static String toStarShorthand(String str) {
+    int count = 1;
+    char let = str.charAt(0);
+    String newStr = "";
+    for (int i = 0; i < str.length(); i++) {
+      if (str.charAt(i) != let) {
+        if (count != 1)
+          newStr += let + "*" + count;
+        else
+          newStr += let;
+        let = str.charAt(i);
+        count = 1;
+      } else
+        count++;
+    }
+    if (count != 1)
+      newStr += let + "*" + count;
+    else
+      newStr += let;
+    return newStr;
+  }
+
+  public static boolean doesRhyme(String str1, String str2) {
+    str1 = str1.substring(str1.lastIndexOf(" ") + 1);
+    str2 = str2.substring(str2.lastIndexOf(" ") + 1);
+    String let = "aeiouyAEIOUY";
+    String res1 = "", res2 = "";
+    for (int i = 0; i < str1.length(); i++) {
+      if (let.indexOf(str1.charAt(i)) != -1)
+        res1 += str1.charAt(i);
+    }
+    for (int i = 0; i < str2.length(); i++) {
+      if (let.indexOf(str2.charAt(i)) != -1)
+        res2 += str2.charAt(i);
+    }
+    if (res1.toLowerCase().equals(res2.toLowerCase())) return true;
+    else
+      return false;
+  }
+
+  public static boolean trouble ( long a, long b){
+    String aa = Long.toString(a);
+    String bb = Long.toString(b);
+    int num = 0;
+    for (int i = 2 ; i < aa.length(); i++) {
+      if (aa.charAt(i) == aa.charAt(i -1) && aa.charAt(i) == aa.charAt(i -2))
+        num = aa.charAt(i);
+    }
+    for (int i = 0 ; i < bb.length(); i++){
+      if (bb.charAt(i)==num && bb.charAt(i+1) == num)
+        return true;
+    }
+    return false;
+  }
+
+  public static int countUniqueBooks(String str, char c){
+    Map<Character, Integer> values = new HashMap<>();
+    boolean start = true;
+    for (int i = 0; i < str.length(); i++){
+      if (str.charAt(i) == c && start) {
+        i++;
+        while (str.charAt(i) != c){
+          Integer n = values.get(str.charAt(i));
+          if (n == null)
+            values.put(str.charAt(i), 1);
+          else
+            values.put(str.charAt(i), ++n);
+          i++;
+        }
+        start = false;
+      }
+      if (str.charAt(i) == c)
+        start = true;
+    }
+    return values.size();
+  }
+}
+
 class Tasks {
   public static void log(String str) {
     System.out.println(str);
@@ -356,6 +522,10 @@ class Tasks {
     for (int i : arr) {
       System.out.println(i);
     }
+  }
+
+  public static void log(String[] str) {
+    System.out.println(String.join(" ", str));
   }
 
   public static void main(String[] args) {
@@ -396,5 +566,17 @@ class Tasks {
     log(Module3.longestZero("000000111110000111111000"));
     log(Module3.nextPrime(12));
     log(Module3.rightTriangle(3, 4, 5));
+    log("Module 4");
+    log("===================================");
+    log(Module4.bessy(10, 7, "hello my name is Bessie and this is my essay"));
+    log(Module4.split("()()()"));
+    log(Module4.toCamelCase("hello_edabit"));
+    log(Module4.overTime(new double[]{9, 17, 30, 1.5}));
+    log(Module4.BMI("205 pounds", "73 inches"));
+    log(Module4.bugger(39));
+    log(Module4.toStarShorthand("abbccc"));
+    log(Module4.doesRhyme("Sam I am!", "Green eggs and ham."));
+    log(Module4.trouble(451997277, 411777228));
+    log(Module4.countUniqueBooks("AZYWABBCATTTA", 'A'));
   }
 }
